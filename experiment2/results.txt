@@ -1,0 +1,50 @@
+题目一：迷宫寻路
+Manhattan path: [(0, 0), (0, 1), (0, 2), (1, 2), (1, 3), (1, 4), (2, 4), (3, 4)]
+Manhattan stats: {'expanded_nodes': 7}
+h=0 stats: {'expanded_nodes': 15}
+
+题目二：加权地形
+minimum cost: 7
+path: [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (3, 2), (4, 2), (4, 3), (4, 4)]
+stats: {'expanded_nodes': 10}
+Dijkstra(h=0) cost/expanded: 7 {'expanded_nodes': 14}
+
+题目三：Alpha-Beta
+Minimax: 5 {'visited_nodes': 15, 'leaf_evaluations': 8, 'cutoffs': 0}
+Alpha-Beta: 5 {'visited_nodes': 14, 'leaf_evaluations': 7, 'cutoffs': 1, 'pruned_children': 1}
+Alpha-Beta(仅反转右侧 MIN 的子节点，仅作顺序对照): 5 {'visited_nodes': 11, 'leaf_evaluations': 5, 'cutoffs': 2, 'pruned_children': 2}
+
+题目四：距离矩阵
+节点顺序: ['A', 'B', 'T1', 'T2', 'T3', 'T4']
+[[0, 12, 10, 4, 8, 8], [12, 0, 8, 8, 4, 10], [10, 8, 0, 6, 6, 12], [4, 8, 6, 0, 6, 6], [8, 4, 6, 6, 0, 6], [8, 10, 12, 6, 6, 0]]
+
+题目四：博弈结果
+H=2 Minimax: {'best_target': 'T2', 'best_value': -1} {'visited_nodes': 17, 'leaf_evaluations': 12, 'cutoffs': 0, 'pruned_children': 0}
+H=2 Alpha-Beta: {'best_target': 'T2', 'best_value': -1} {'visited_nodes': 13, 'leaf_evaluations': 8, 'cutoffs': 2, 'pruned_children': 4}
+H=4 Minimax: {'best_target': 'T3', 'best_value': 3} {'visited_nodes': 65, 'leaf_evaluations': 24, 'cutoffs': 0, 'pruned_children': 0}
+H=4 Alpha-Beta: {'best_target': 'T3', 'best_value': 3} {'visited_nodes': 47, 'leaf_evaluations': 16, 'cutoffs': 5, 'pruned_children': 6}
+
+题目四：访问顺序对剪枝的影响
+natural {'best_target': 'T3', 'best_value': 3} {'visited_nodes': 47, 'leaf_evaluations': 16, 'cutoffs': 5, 'pruned_children': 6}
+reverse {'best_target': 'T3', 'best_value': 3} {'visited_nodes': 46, 'leaf_evaluations': 16, 'cutoffs': 4, 'pruned_children': 5}
+heuristic {'best_target': 'T3', 'best_value': 3} {'visited_nodes': 50, 'leaf_evaluations': 18, 'cutoffs': 2, 'pruned_children': 3}
+
+自设拓展：小型迷宫与特殊情况测试
+自设迷宫：
+S . . X .
+X X . X .
+. . . . .
+. X X X .
+. . . . E
+Manhattan path: [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), (2, 4), (3, 4), (4, 4)]
+Manhattan steps: 8
+Manhattan stats: {'expanded_nodes': 8}
+h=0 path: [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), (2, 4), (3, 4), (4, 4)]
+h=0 steps: 8
+h=0 stats: {'expanded_nodes': 12}
+
+不可达迷宫 path: []
+不可达迷宫 stats: {'expanded_nodes': 1}
+起点等于终点 path: [(0, 0)]
+起点等于终点 stats: {'expanded_nodes': 0}
+[PASS] 自设迷宫、无解情况和起点等于终点三项测试全部通过。
